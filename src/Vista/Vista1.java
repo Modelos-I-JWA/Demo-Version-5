@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,47 +40,57 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
 
     ArrayList<Personaje> p1 = new ArrayList<>();
     ArrayList<Personaje> p2 = new ArrayList<>();
-    ArrayList<Personaje> poderes = new ArrayList<>();
+    ArrayList<Poder> poderes = new ArrayList<>();
     Observador observar=new Observador();
     Estado estado;
-    Graphics g;
     Boolean est1;
     Boolean est2;
     Selector s = new Selector();
-    Personaje per;
+    
    
     int c;
     Control ctr = new Control() {};
 
 
-    public Vista1(Personaje per,Personaje per2, Personaje poder) {
+    public Vista1(Personaje per,Personaje per2, Poder poderS, Poder poderA, Poder poderT) {
         initComponents();
         this.setEstado1(true);
         this.setEstado2(true);
         est1=this.getvAnimacion1();
         est2=this.getvAnimacion2();
+        poderS.setPanel(panel);
+        poderA.setPanel(panel);
+        poderT.setPanel(panel);
+        poderS.setx(1);
+        poderA.setx(2);
+        poderT.setx(3);
+        
         per.setPanel(panel);
         per2.setPanel(panel);
-        poder.setPanel(panel);
+        
         
         this.p1.add(per);
         this.p1.add(per.clone());
         
-        this.p1.get(0).setHitbox(20, 0, this.p1.get(1).getAncho(), this.p1.get(1).getAlto());
-        this.p1.get(1).setHitbox(20, 200, this.p1.get(1).getAncho(), this.p1.get(1).getAlto());
-        this.p1.get(1).setDesplazamientoVertical(200);
+        this.p1.get(0).setHitbox(0,250 , this.p1.get(0).getAncho(), this.p1.get(0).getAlto());
+        this.p1.get(0).setDesplazamientoVertical(250);
         this.p1.get(0).setPlayer(1);
+ 
+        this.p1.get(1).setHitbox(200, 250, this.p1.get(1).getAncho(), this.p1.get(1).getAlto());
+        this.p1.get(1).setDesplazamientoHorizontal(200);
+        this.p1.get(1).setDesplazamientoVertical(250);
         this.p1.get(1).setPlayer(1);
         
         this.p2.add(per2);
         this.p2.add(per2.clone());
-        
-        this.p2.get(0).setHitbox(400, 0, this.p2.get(1).getAncho(), this.p2.get(1).getAlto());
-        this.p2.get(1).setHitbox(400, 200, this.p2.get(1).getAncho(), this.p2.get(1).getAlto());
-        this.p2.get(0).setDesplazamientoHorizontal(400);
-        this.p2.get(1).setDesplazamientoHorizontal(400);
-        this.p2.get(1).setDesplazamientoVertical(200);
+        this.p2.get(0).setHitbox(1150, 250, this.p2.get(1).getAncho(), this.p2.get(1).getAlto());
+        this.p2.get(0).setDesplazamientoHorizontal(1150);
+        this.p2.get(0).setDesplazamientoVertical(250);
         this.p2.get(0).setPlayer(2);
+        
+        this.p2.get(1).setHitbox(950, 250, this.p2.get(1).getAncho(), this.p2.get(1).getAlto());
+        this.p2.get(1).setDesplazamientoHorizontal(950);
+        this.p2.get(1).setDesplazamientoVertical(250);
         this.p2.get(1).setPlayer(2);
         
         panel.add(this.p1.get(0));
@@ -88,12 +99,38 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
         panel.add(this.p2.get(1));
         
         
-        this.poderes.add(poder);
-        this.poderes.get(0).setHitbox(220, 300, this.poderes.get(0).getAncho() , this.poderes.get(0).getAlto());
-        this.poderes.get(0).setDesplazamientoVertical(300);
-        this.poderes.get(0).setDesplazamientoHorizontal(280);
-       
+        this.poderes.add(poderT);
+        this.poderes.add(poderA);
+        this.poderes.add(poderA.clone());
+        this.poderes.add(poderS);
+        this.poderes.add(poderS.clone());
+        
+        this.poderes.get(0).setHitbox(570, 250, this.poderes.get(0).getAncho() , this.poderes.get(0).getAlto());
+        this.poderes.get(0).setDesplazamientoVertical(250);
+        this.poderes.get(0).setDesplazamientoHorizontal(570);
+        
+        this.poderes.get(1).setHitbox(10, 10, this.poderes.get(1).getAncho() , this.poderes.get(1).getAlto());
+        this.poderes.get(1).setDesplazamientoVertical(10);
+        this.poderes.get(1).setDesplazamientoHorizontal(10);
+        
+        this.poderes.get(2).setHitbox(1050, 550, this.poderes.get(2).getAncho() , this.poderes.get(2).getAlto());    
+        this.poderes.get(2).setDesplazamientoVertical(550);
+        this.poderes.get(2).setDesplazamientoHorizontal(1050);
+        
+        this.poderes.get(3).setHitbox(10, 550, this.poderes.get(3).getAncho() , this.poderes.get(3).getAlto());
+        this.poderes.get(3).setDesplazamientoVertical(550);
+        this.poderes.get(3).setDesplazamientoHorizontal(10);
+        
+        this.poderes.get(4).setHitbox(1050, 10, this.poderes.get(4).getAncho() , this.poderes.get(4).getAlto());
+        this.poderes.get(4).setDesplazamientoVertical(10);
+        this.poderes.get(4).setDesplazamientoHorizontal(1050);
+        
+        
         panel.add(this.poderes.get(0));
+        panel.add(this.poderes.get(1));
+        panel.add(this.poderes.get(2));
+        panel.add(this.poderes.get(3));
+        panel.add(this.poderes.get(4));
 
         addKeyListener(this);
         setFocusable(true);
@@ -131,25 +168,70 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
                 break;
 
         }
-        
+            
+        for (int i = 0; i < p1.size(); i++) {
+                if (p1.get(i).getHitbox().intersects(poderes.get(0).getHitbox())) {
+                    notificar1(est1);
+            }
+        }
         for (int i = 0; i < p2.size(); i++) {
-            for (int j = 0; j < poderes.size(); j++) {
-                if (p2.get(i).getHitbox().intersects(poderes.get(j).getHitbox())) {
+                if (p2.get(i).getHitbox().intersects(poderes.get(0).getHitbox())) {
                     notificar2(est2);
-                    
-                }
+            }
+        }
+        for (int i = 0; i < p1.size(); i++) {
+                if (p1.get(i).getHitbox().intersects(poderes.get(1).getHitbox()) || p1.get(i).getHitbox().intersects(poderes.get(2).getHitbox())) {
+                    c = 1;
+                    ctr.operar(c, p1.get(0));
+            }
+        }
+        for (int i = 0; i < p2.size(); i++) {
+                if ( p2.get(i).getHitbox().intersects(poderes.get(1).getHitbox()) || p2.get(i).getHitbox().intersects(poderes.get(2).getHitbox())) {
+                    c = 1;
+                    ctr.operar(c, p2.get(0));
+            }
+        }
+        for (int i = 0; i < p1.size(); i++) {
+                if (p1.get(i).getHitbox().intersects(poderes.get(3).getHitbox()) || p1.get(i).getHitbox().intersects(poderes.get(4).getHitbox())) {
+                    c = 3;
+                    ctr.operar(c, p1.get(0));
+            }
+        }
+        for (int i = 0; i < p2.size(); i++) {
+                if ( p2.get(i).getHitbox().intersects(poderes.get(3).getHitbox()) || p2.get(i).getHitbox().intersects(poderes.get(4).getHitbox())) {
+                    c = 3;
+                    ctr.operar(c, p2.get(0));
             }
         }
         
         for (int i = 0; i < p1.size(); i++) {
-            for (int j = 0; j < poderes.size(); j++) {
-                if (p1.get(i).getHitbox().intersects(poderes.get(j).getHitbox())) {
-                    notificar1(est1);
-                    
-                }
+            for(int j = 0; j < p2.size(); j++)
+                if ( p1.get(i).getHitbox().intersects(p2.get(j).getHitbox()) && p1.get(i).golpear==true) {
+                    c = 2;
+                    ctr.operar(c, p2.get(0)); 
             }
         }
-    }
+        for (int i = 0; i < p1.size(); i++) {
+            for(int j = 0; j < p2.size(); j++)
+                if ( p1.get(i).getHitbox().intersects(p2.get(j).getHitbox()) && p2.get(i).golpear==true) {
+                    c = 2;
+                    ctr.operar(c, p1.get(0)); 
+            }
+        }
+   
+     if(p1.get(0).vAnimacion==0){
+         p1.get(0).velocidad=240;
+         p1.get(0).morir();
+         JOptionPane.showMessageDialog(null,"Ganador Jugador 2");
+     }
+     
+     if(p2.get(0).vAnimacion==0){
+         p2.get(0).velocidad=240;
+         p2.get(0).morir();
+         JOptionPane.showMessageDialog(null,"Ganador Jugador 2");
+     }   
+        
+    }       
     public void notificar1(boolean est) {
             
             this.setEstado1(observar.update(est));
@@ -191,7 +273,6 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        BotonClonar = new javax.swing.JButton();
         BotonPoder = new javax.swing.JButton();
         BajarV = new javax.swing.JButton();
         SubirV = new javax.swing.JButton();
@@ -204,25 +285,12 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 738, Short.MAX_VALUE)
+            .addGap(0, 1313, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        BotonClonar.setText("Clonar");
-        BotonClonar.setFocusable(false);
-        BotonClonar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonClonarActionPerformed(evt);
-            }
-        });
-        BotonClonar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                KP(evt);
-            }
-        });
 
         BotonPoder.setText("Poder");
         BotonPoder.setFocusable(false);
@@ -268,53 +336,46 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonClonar)
                     .addComponent(BotonPoder)
                     .addComponent(BajarV)
                     .addComponent(SubirV))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(BotonClonar)
-                .addGap(185, 185, 185)
+                .addContainerGap()
                 .addComponent(BotonPoder)
                 .addGap(60, 60, 60)
                 .addComponent(BajarV)
                 .addGap(18, 18, 18)
                 .addComponent(SubirV)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(528, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonClonarActionPerformed
-
-    }//GEN-LAST:event_BotonClonarActionPerformed
-
     private void BotonPoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPoderActionPerformed
-        c = 1;
-        ctr.operar(c, per);
+       // c = 1;
+       // ctr.operar(c, p1.get(0));
     }//GEN-LAST:event_BotonPoderActionPerformed
 
     private void BajarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajarVActionPerformed
         c = 2;
-        ctr.operar(c, per);
+        ctr.operar(c, p1.get(0));
     }//GEN-LAST:event_BajarVActionPerformed
 
     private void SubirVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubirVActionPerformed
         c = 3;
-        ctr.operar(c, per);
+        ctr.operar(c, p1.get(0));
 
     }//GEN-LAST:event_SubirVActionPerformed
 
@@ -323,7 +384,6 @@ public class Vista1 extends javax.swing.JFrame implements KeyListener {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BajarV;
-    private javax.swing.JButton BotonClonar;
     private javax.swing.JButton BotonPoder;
     private javax.swing.JButton SubirV;
     public javax.swing.JPanel panel;

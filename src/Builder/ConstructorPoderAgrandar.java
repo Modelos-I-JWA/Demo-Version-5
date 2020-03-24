@@ -16,20 +16,21 @@ import javax.swing.ImageIcon;
  *
  * @author Montes Martinez
  */
-public class ConstructorPoder extends BuilderPersonaje{
-     @Override
-    public void ConstruirPersonaje() {
-        personaje = new Poder();
+public class ConstructorPoderAgrandar extends BuilderPoder{
+   public void ConstruirPoder() {
+        poder = new Agrandar();
+      
     }
 
     @Override
     public void CrearAnimaciones() {
+
         try {
-            personaje.derecha[0] = new ImageIcon(ImageIO.read(new File("Recursos\\ImagenPoder\\Poder.jpg")));
+            poder.PAgrandar[0]= new ImageIcon(ImageIO.read(new File("Recursos\\ImagenPoder\\agrandar.png")));            
         } catch (IOException ex) {
             Logger.getLogger(Poder.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
     }
 }
-
 

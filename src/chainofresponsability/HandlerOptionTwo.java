@@ -15,9 +15,13 @@ public class HandlerOptionTwo extends Handler{
 
     @Override
     public void handlerRequest(int opt, Personaje per) {
+        System.out.println("entraaaaaaaa");
         if(opt == 2){
-            per.setvAnimacion(per.getvAnimacion() + 5);
-            System.out.println(per.getVelocidad()+" jjj");
+            System.out.println("SUBE VIDAAAA");
+            per.setvAnimacion(per.getvAnimacion() + 1);
+             per.velocidad=per.velocidad-40;
+             }else{
+            successor.handlerRequest(opt,per);
         }
     }
 

@@ -19,11 +19,12 @@ public class Implementar  {
 
    
     public void operacion(int opt,Personaje per) {
-        manejadores = new Handler[2];
+        manejadores = new Handler[3];
+        manejadores[2] = new HandlerOptionTree();
         manejadores[1] = new HandlerOptionTwo();
         manejadores[0] = new HandlerOptionOne();
         for(int i=0; i<manejadores.length - 1;i++){
-            manejadores[i].setSuccessor(manejadores[i+1]); ;
+            manejadores[i].setSuccessor(manejadores[i+1]);
         }
         manejadores[0].handlerRequest(opt, per);
     }

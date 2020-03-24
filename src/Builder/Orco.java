@@ -14,12 +14,12 @@ import javax.swing.ImageIcon;
  */
 public class Orco extends Personaje{
     public Orco() {
-        super.setHilo(5,6, 5, 4, 3, velocidad);
-        super.ancho = 250;
-        super.alto = 150;
+        super.setHilo(5,5, 5, 4, 3, velocidad);
+        super.ancho = 100;
+        super.alto = 80;
         super.relacion = 3;
         super.derecha = new ImageIcon[5];
-        super.izquierda= new ImageIcon[6];
+        super.izquierda= new ImageIcon[5];
         super.saltar = new ImageIcon[5];
         super.morir = new ImageIcon[4];
         super.atacar = new ImageIcon[3];

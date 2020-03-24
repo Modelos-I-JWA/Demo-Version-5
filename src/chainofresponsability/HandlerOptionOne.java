@@ -17,8 +17,9 @@ public class HandlerOptionOne extends Handler {
     @Override
     public void handlerRequest(int opt, Personaje per) {
         if (opt == 1) {
-            per.setvAnimacion(per.getvAnimacion() - 5);
-            System.out.println(per.getvAnimacion());
+            System.out.println("BAJA VIDA NORMAL");
+            per.setvAnimacion(per.getvAnimacion() - 1);
+            per.velocidad=per.velocidad+40;
         } else {
             successor.handlerRequest(opt, per);
         }

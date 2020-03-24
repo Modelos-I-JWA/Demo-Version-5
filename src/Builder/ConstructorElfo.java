@@ -35,7 +35,6 @@ public class ConstructorElfo extends BuilderPersonaje {
 
     @Override
     public void CrearAnimaciones() {
-System.out.print(derecha.operacion().get(5));
         for (int i = 0; i < 6; i++) {
             try {
                 personaje.derecha[i]= new ImageIcon(ImageIO.read(new File(derecha.operacion().get(i))));

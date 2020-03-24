@@ -21,25 +21,30 @@ public class Selector {
     
     
 
-    public void selector(int accion, Personaje a) {
-        System.out.println(accion);
+    public void selector(int accion, Personaje a,boolean tamaño) {
+ 
         if (accion == 1) {
-            Component real = new RealComponent();
-            System.out.println(real.doThis(a));
+            Component real = new RealComponent();    
             Component wrapper = new WrapperUno(real);
-            System.out.println(wrapper.doThis(a));
             Component wrapper2 = new WrapperUno(wrapper);
-            System.out.println(wrapper2.doThis(a));
+            wrapper2.doThis(a);
         }
         if (accion == 2) {
+            if(tamaño==false){
             Implementar imp = new Implementar();
             imp.operacion(1, a);
+            }else
+            if (tamaño==true){
+            Implementar imp = new Implementar();
+            imp.operacion(3, a);   
+            }
         }
         if (accion == 3) {
             Implementar imp = new Implementar();
             imp.operacion(2, a);
         }
     }
+
 }
 
 

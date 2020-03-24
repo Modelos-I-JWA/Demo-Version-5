@@ -20,7 +20,6 @@ public class IzquierdaOrco implements Izquierda {
          IzqOrc.add("Recursos\\ImagenesOrco\\Izquierda\\OrcIzq3.jpg");
          IzqOrc.add("Recursos\\ImagenesOrco\\Izquierda\\OrcIzq4.jpg");
          IzqOrc.add("Recursos\\ImagenesOrco\\Izquierda\\OrcIzq5.jpg");
-         IzqOrc.add("Recursos\\ImagenesOrco\\Izquierda\\OrcIzq6.jpg");
          IzqOrc.add("/Sonidos/Movimiento.wav");
         return IzqOrc;
     }

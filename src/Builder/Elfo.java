@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
 public class Elfo extends Personaje {
     public Elfo() {
         super.setHilo(6 , 6 , 6, 5, 5, velocidad);
-        super.ancho = 250;
-        super.alto = 150;
+        super.ancho = 100;
+        super.alto = 80;
         super.relacion = 1;
         super.derecha = new ImageIcon[6];
         super.izquierda=new ImageIcon[6];

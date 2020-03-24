@@ -9,7 +9,9 @@ import Builder.Builder;
 import Builder.ConstructorElfo;
 import Builder.ConstructorHumano;
 import Builder.ConstructorOrco;
-import Builder.ConstructorPoder;
+import Builder.ConstructorPoderAgrandar;
+import Builder.ConstructorPoderSubeVida;
+import Builder.ConstructorPoderTeletransporte;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,9 +19,7 @@ import javax.swing.JOptionPane;
  * @author Montes Martinez
  */
 public class SeleccionPersonajes extends javax.swing.JFrame {
-    
-    int[ ]select2;
-    String select;
+ 
     Builder build;
     Builder build2;
     public SeleccionPersonajes() {
@@ -30,6 +30,8 @@ public class SeleccionPersonajes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         humano1 = new javax.swing.JRadioButton();
@@ -46,8 +48,10 @@ public class SeleccionPersonajes extends javax.swing.JFrame {
 
         jLabel2.setText("Jugador 2");
 
+        buttonGroup1.add(humano1);
         humano1.setText("Humano");
 
+        buttonGroup1.add(elfo1);
         elfo1.setText("Elfo");
         elfo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,12 +59,16 @@ public class SeleccionPersonajes extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(orco1);
         orco1.setText("Orco");
 
+        buttonGroup2.add(humano2);
         humano2.setText("Humano");
 
+        buttonGroup2.add(elfo2);
         elfo2.setText("Elfo");
 
+        buttonGroup2.add(orco2);
         orco2.setText("Orco");
 
         jugar.setText("Jugar");
@@ -168,17 +176,25 @@ public class SeleccionPersonajes extends javax.swing.JFrame {
             build2.setConstructor(new ConstructorElfo());
             build2.CrearPersonaje();
         }
-        Builder build3 = new Builder();
-        build3.setConstructor(new ConstructorPoder());
-        build3.CrearPersonaje();
+        Builder poder1 = new Builder();
+        poder1.setConstructorp(new ConstructorPoderSubeVida());
+        poder1.CrearPoder();
+        
+        Builder poder2 = new Builder();
+        poder2.setConstructorp(new ConstructorPoderAgrandar());
+        poder2.CrearPoder();
+        
+        Builder poder3 = new Builder();
+        poder3.setConstructorp(new ConstructorPoderTeletransporte());
+        poder3.CrearPoder();
         try{
-            Vista1 ventana = new Vista1(build.getPersonaje(),build2.getPersonaje(),build3.getPersonaje());
+            Vista1 ventana = new Vista1(build.getPersonaje(),build2.getPersonaje(),poder1.getPoder(), poder2.getPoder(), poder3.getPoder());
             ventana.setVisible(true);
             ventana.setResizable(false);
             this.setVisible(false);
             dispose();
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Cada jugador debe seleccionar un personaje");
+            JOptionPane.showMessageDialog(null, ex);
         }
             
         }
@@ -193,6 +209,8 @@ public class SeleccionPersonajes extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButton elfo1;
     private javax.swing.JRadioButton elfo2;
     private javax.swing.JRadioButton humano1;

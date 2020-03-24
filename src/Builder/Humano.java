@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
 public class Humano extends Personaje{
      public Humano() {
         super.setHilo(5, 5, 3, 7, 5, velocidad);
-        super.ancho = 250;
-        super.alto = 150;
+        super.ancho = 80;
+        super.alto = 80;
         super.relacion = 2;
         super.derecha = new ImageIcon[5];
         super.izquierda= new ImageIcon[5];

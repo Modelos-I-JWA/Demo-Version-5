@@ -42,7 +42,7 @@ public class ConstructorOrco extends BuilderPersonaje{
                 Logger.getLogger(Orco.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
                 personaje.izquierda[i]= new ImageIcon(ImageIO.read(new File(izquierda.operacion().get(i))));
             } catch (IOException ex) {

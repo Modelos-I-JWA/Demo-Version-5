@@ -23,11 +23,9 @@ public class Personaje extends JComponent implements Cloneable {
     protected ImageIcon[] saltar;
     protected ImageIcon[] morir;
     protected ImageIcon[] atacar;
-    protected Control ctr;
-    static ImageIcon img;
     public int desplazamiento;
     public int tempDesplazamiento;
-    int x = 0;
+    int x;
     int numero = 0;
     int ancho = 0;
     int alto = 0;
@@ -39,14 +37,13 @@ public class Personaje extends JComponent implements Cloneable {
     public int ampliar;
     public int player;
     Rectangle hitbox;
-    Rectangle poder;
     static JPanel panel;
-    static JLabel Imagen = null;
     public Thread hilo;
+    public boolean golpear;
 
     // CONSTRUCTOR
     public Personaje() {
-
+        
         velocidad = 240;
         vAnimacion = 24;
         ampliar = 0;
@@ -63,6 +60,7 @@ public class Personaje extends JComponent implements Cloneable {
         relacion = 0;
 
     }
+
 
     public int isRelacion() {
         return relacion;
@@ -88,16 +86,24 @@ public class Personaje extends JComponent implements Cloneable {
     }
 
     public void setHilo(final int derecha, final int izquierda, final int saltar, final int morir, final int atacar, final int sleep) {
-        this.hilo = new Thread() {
+            if(velocidad>240){
+               velocidad=240;
+            }
+            
+            this.hilo = new Thread() {
             @Override
             public void run() {
                 try {
+                   
+                    
                     while (true) {
                         switch (x) {
                             case 0:
+                                golpear=false;
                                 numero++;
                                 switch (desplazamiento) {
                                     case 1:
+                       
                                         desplazamientoHorizontal += vAnimacion;
                                         hitbox.x += vAnimacion;
                                         tempDesplazamiento = desplazamiento;
@@ -156,11 +162,12 @@ public class Personaje extends JComponent implements Cloneable {
                                     numero=numero%izquierda;
                                 }
                                 panel.repaint();
-                                hilo.sleep(sleep);
+                                hilo.sleep(velocidad);
                                 break;
                             case 1:
+                                golpear=false;
                                 panel.repaint();
-                                hilo.sleep(sleep);
+                                hilo.sleep(velocidad);
                                 if (numero >= saltar - 1) {
                                     numero = saltar - 1;
                                 } else {
@@ -168,8 +175,9 @@ public class Personaje extends JComponent implements Cloneable {
                                 }
                                 break;
                             case 2:
+                                golpear=false;
                                 panel.repaint();
-                                hilo.sleep(sleep);
+                                hilo.sleep(velocidad);
                                 if (numero >= morir - 1) {
                                     numero = morir - 1;
                                 } else {
@@ -177,11 +185,14 @@ public class Personaje extends JComponent implements Cloneable {
                                 }
                                 break;
                             case 3:
+                                
                                 panel.repaint();
-                                hilo.sleep(sleep);
+                                hilo.sleep(velocidad);
                                 if (numero >= atacar - 1) {
                                     numero = atacar - 1;
+                                    golpear=false;
                                 } else {
+                                    golpear=true;
                                     numero++;
                                 }
                                 break;
@@ -189,9 +200,13 @@ public class Personaje extends JComponent implements Cloneable {
                                 break;
                         }
                     }
+                    
+                    
                 } catch (java.lang.InterruptedException ex) {
                     System.out.println(ex.getMessage());
                 }
+                
+                
             }
         };
     }
@@ -199,6 +214,7 @@ public class Personaje extends JComponent implements Cloneable {
     public void setPanel(JPanel panel) {
         this.panel = panel;
         setBounds(0, 0, panel.getWidth(), panel.getHeight());
+        
     }
 
     public ImageIcon[] getDerecha() {
@@ -252,7 +268,7 @@ public class Personaje extends JComponent implements Cloneable {
             } else if (PersonajeClonado.isRelacion() == 2) {
                 PersonajeClonado.setHilo(5, 5, 3, 7, 5, velocidad);
             } else if (PersonajeClonado.isRelacion() == 3) {
-                PersonajeClonado.setHilo(5, 6, 5, 4, 3, velocidad);
+                PersonajeClonado.setHilo(5, 5, 5, 4, 3, velocidad);
             }
 
         } catch (CloneNotSupportedException e) {
@@ -263,30 +279,31 @@ public class Personaje extends JComponent implements Cloneable {
     // PINTAR EN PANEL
     @Override
     public void paint(Graphics g) {
+        
         try {
-            g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-
+  
+            g.drawRect(hitbox.x, hitbox.y, hitbox.width+((ampliar/2)), hitbox.height+ampliar);
             switch (x) {
                 case 0:                  
                     if(player==2){
-                        g.drawImage(izquierda[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto + ampliar, null);
+                        g.drawImage(izquierda[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho+ampliar, alto + ampliar, null);
                     }else{
-                        g.drawImage(derecha[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto + ampliar, null);
+                        g.drawImage(derecha[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho+(ampliar/2), alto + ampliar, null);
                     }        
                         break;
                 case 1:
 
-                    g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho, alto + ampliar, null);
+                    g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
 
                     break;
                 case 2:
 
-                    g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho, alto + ampliar, null);
+                    g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
 
                     break;
                 case 3:
 
-                    g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho, alto + ampliar, null);
+                    g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
 
                     break;
                 default:
@@ -380,7 +397,7 @@ public class Personaje extends JComponent implements Cloneable {
     }
 
     public void setHitbox(int x, int y, int ancho, int alto) {
-        hitbox = new Rectangle(x+140, y , ancho/2, alto-40 );
+        hitbox = new Rectangle(x+50, y , ancho-30+((ampliar/2)), (alto-10)+ampliar );
     }
 
 }

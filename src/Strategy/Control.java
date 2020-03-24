@@ -19,16 +19,22 @@ import Vista.Vista1;
 public abstract class Control extends Selector {
 
     Selector s = new Selector();
+    boolean tamaño=false;
+  
 
     public void operar(int c, Personaje a) {
         if (c == 1) {
-            s.selector(c, a);
+            tamaño=true;
+            s.selector(c,a,tamaño);
         }
         if (c == 2) {
-            s.selector(c,a);
+            s.selector(c,a,tamaño);
         }
         if (c == 3) {
-            s.selector(c,a);
+            if(a.velocidad>=24){
+            }else{
+            s.selector(c,a,tamaño);
+            }
         }
     }
 
