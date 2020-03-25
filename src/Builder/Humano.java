@@ -23,6 +23,7 @@ public class Humano extends Personaje{
         super.saltar = new ImageIcon[3];
         super.morir = new ImageIcon[7];
         super.atacar = new ImageIcon[5];
-       
+       super.atacarIzq=new ImageIcon[5];
+        super.morirIzq=new ImageIcon[7];
     }
 }

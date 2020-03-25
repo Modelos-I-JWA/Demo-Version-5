@@ -20,18 +20,17 @@ public abstract class Control extends Selector {
 
     Selector s = new Selector();
     boolean tamaño=false;
-  
 
     public void operar(int c, Personaje a) {
         if (c == 1) {
-            tamaño=true;
             s.selector(c,a,tamaño);
         }
         if (c == 2) {
             s.selector(c,a,tamaño);
         }
         if (c == 3) {
-            if(a.velocidad>=24){
+            if(a.vAnimacion>=24){
+                System.out.println("No entrooooooooooo");
             }else{
             s.selector(c,a,tamaño);
             }

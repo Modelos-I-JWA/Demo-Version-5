@@ -10,6 +10,7 @@ import Builder.ConstructorElfo;
 import Builder.ConstructorHumano;
 import Builder.ConstructorOrco;
 import Builder.ConstructorPoderAgrandar;
+import Builder.ConstructorPoderSacarClone;
 import Builder.ConstructorPoderSubeVida;
 import Builder.ConstructorPoderTeletransporte;
 import javax.swing.JOptionPane;
@@ -187,8 +188,12 @@ public class SeleccionPersonajes extends javax.swing.JFrame {
         Builder poder3 = new Builder();
         poder3.setConstructorp(new ConstructorPoderTeletransporte());
         poder3.CrearPoder();
+        
+        Builder poder4 = new Builder();
+        poder4.setConstructorp(new ConstructorPoderSacarClone());
+        poder4.CrearPoder();
         try{
-            Vista1 ventana = new Vista1(build.getPersonaje(),build2.getPersonaje(),poder1.getPoder(), poder2.getPoder(), poder3.getPoder());
+            Vista1 ventana = new Vista1(build.getPersonaje(),build2.getPersonaje(),poder1.getPoder(), poder2.getPoder(), poder3.getPoder(), poder4.getPoder());
             ventana.setVisible(true);
             ventana.setResizable(false);
             this.setVisible(false);

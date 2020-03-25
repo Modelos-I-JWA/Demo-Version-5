@@ -20,31 +20,31 @@ public class MovimientoJ2 implements Estado{
     public void EjecutarAccion(KeyEvent e, ArrayList<Personaje> p) {
         switch (e.getKeyCode()) {    
             case KeyEvent.VK_RIGHT:    
-                p.get(0).desplazamiento = 1;
-                p.get(1).desplazamiento = 1;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 1;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_UP:
-                p.get(0).desplazamiento = 2;
-                p.get(1).desplazamiento = 2;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 2;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_LEFT:
-                p.get(0).desplazamiento = 3;
-                p.get(1).desplazamiento = 3;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 3;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_DOWN:
-                p.get(0).desplazamiento = 4;
-                p.get(1).desplazamiento = 4;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 4;
+                p.get(i).mover();
+                }
          }      
     }
 }

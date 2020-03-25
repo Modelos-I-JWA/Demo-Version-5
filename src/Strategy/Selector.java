@@ -30,14 +30,15 @@ public class Selector {
             wrapper2.doThis(a);
         }
         if (accion == 2) {
-            if(tamaño==false){
+            if(a.tamañop==false){
             Implementar imp = new Implementar();
             imp.operacion(1, a);
             }else
-            if (tamaño==true){
+            if (a.tamañop==true){
             Implementar imp = new Implementar();
             imp.operacion(3, a);   
             }
+        
         }
         if (accion == 3) {
             Implementar imp = new Implementar();

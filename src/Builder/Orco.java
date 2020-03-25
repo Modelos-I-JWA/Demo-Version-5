@@ -23,6 +23,7 @@ public class Orco extends Personaje{
         super.saltar = new ImageIcon[5];
         super.morir = new ImageIcon[4];
         super.atacar = new ImageIcon[3];
-        
+        super.atacarIzq=new ImageIcon[3];
+        super.morirIzq=new ImageIcon[4];
     }
 }

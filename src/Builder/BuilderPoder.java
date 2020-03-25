@@ -14,6 +14,7 @@ public abstract class BuilderPoder {
     protected SubeVida subeVida;
     protected Agrandar agrandar;
     protected Teletransporte tele;
+    protected SacarClone clon;
 
     public Poder getPoder() {
         return poder;

@@ -25,6 +25,7 @@ public class Poder extends JComponent implements Cloneable {
         protected ImageIcon[] PsubeVida;
         protected ImageIcon[] PAgrandar;
         protected ImageIcon[] Pteletransporte;
+        protected ImageIcon[] PsacarClone;
         int desplazamientoVertical = 0;
         int desplazamientoHorizontal = 0;
          int numero = 0;
@@ -44,7 +45,7 @@ public class Poder extends JComponent implements Cloneable {
         
         
         
-        public void setDesplazamientoVertical(int desplazamiento) {
+    public void setDesplazamientoVertical(int desplazamiento) {
         this.desplazamientoVertical = desplazamiento;
     }
 
@@ -99,6 +100,9 @@ public class Poder extends JComponent implements Cloneable {
                  case 3:
                         g.drawImage(Pteletransporte[0].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho, alto, null);
                     break;
+                case 4:
+                        g.drawImage(PsacarClone[0].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho, alto, null);
+                    break;    
                 default:
                     break;
             }
@@ -120,11 +124,20 @@ public class Poder extends JComponent implements Cloneable {
         return PoderClonado;
     }
     
-     public ImageIcon[] getAgrandar() {
+     public ImageIcon[] getSacarClone() {
+        return PsacarClone;
+    }
+
+    public void setSacarClone(ImageIcon[] PsacarClone) {
+        this.PsacarClone = PsacarClone;
+    }
+    
+
+    public ImageIcon[] getAgrandar() {
         return PAgrandar;
     }
 
-    public void setDerecha(ImageIcon[] PAgrandar) {
+    public void setAgrandar(ImageIcon[] PAgrandar) {
         this.PAgrandar = PAgrandar;
     }
 
@@ -159,6 +172,13 @@ public class Poder extends JComponent implements Cloneable {
     }
     public void teletransporte() {
         x = 3;
+        numero=10;
+        if (!hilo.isAlive()) {
+            hilo.start();
+        }
+    }
+    public void sacarClone() {
+        x = 4;
         numero=10;
         if (!hilo.isAlive()) {
             hilo.start();

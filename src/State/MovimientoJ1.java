@@ -19,32 +19,31 @@ public class MovimientoJ1 implements Estado{
     public void EjecutarAccion(KeyEvent e, ArrayList<Personaje> p) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_D:
-                
-                p.get(0).desplazamiento = 1;
-                p.get(1).desplazamiento = 1;
-                p.get(0).mover();
-                p.get(1).mover();
+               for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 1;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_W:
-                p.get(0).desplazamiento = 2;
-                p.get(1).desplazamiento = 2;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 2;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_A:
-                p.get(0).desplazamiento = 3;
-                p.get(1).desplazamiento = 3;
-                p.get(0).mover();
-                p.get(1).mover();
+               for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 3;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_S:
-                p.get(0).desplazamiento = 4;
-                p.get(1).desplazamiento = 4;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 4;
+                p.get(i).mover();
+                }
                 break;
          
 

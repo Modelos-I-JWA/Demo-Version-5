@@ -21,31 +21,31 @@ public class TeletransporteJ2 implements Estado{
     public void EjecutarAccion(KeyEvent e, ArrayList<Personaje> p) {
        switch (e.getKeyCode()) { 
             case KeyEvent.VK_RIGHT:
-                p.get(0).desplazamiento = 5;
-                p.get(1).desplazamiento = 5;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 5;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_UP:
-                p.get(0).desplazamiento = 6;
-                p.get(1).desplazamiento = 6;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 6;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_LEFT:
-                p.get(0).desplazamiento = 7;
-                p.get(1).desplazamiento = 7;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 7;
+                p.get(i).mover();
+                }
                 break;
 
             case KeyEvent.VK_DOWN:
-                p.get(0).desplazamiento = 8;
-                p.get(1).desplazamiento = 8;
-                p.get(0).mover();
-                p.get(1).mover();
+                for(int i=0;i<p.size();i++){
+                p.get(i).desplazamiento = 8;
+                p.get(i).mover();
+                }
                 break;
             }    
         }

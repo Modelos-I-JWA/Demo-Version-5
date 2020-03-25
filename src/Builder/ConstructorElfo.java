@@ -6,12 +6,17 @@
 package Builder;
 
 import AbstractFactory.AtaqueElfo;
+import AbstractFactory.AtaqueIzq;
+import AbstractFactory.AtaqueIzqElfo;
 import AbstractFactory.DerechaElfo;
 import AbstractFactory.IzquierdaElfo;
 import AbstractFactory.MuerteElfo;
+import AbstractFactory.MuerteIzq;
+import AbstractFactory.MuerteIzqElfo;
 import AbstractFactory.SaltoElfo;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -31,6 +36,9 @@ public class ConstructorElfo extends BuilderPersonaje {
         izquierda=new IzquierdaElfo();
         salto=new SaltoElfo();
         muerte=new MuerteElfo();
+        muerIzq=new MuerteIzqElfo();
+        atqIzq =new AtaqueIzqElfo();
+
     }
 
     @Override
@@ -70,6 +78,19 @@ public class ConstructorElfo extends BuilderPersonaje {
                 Logger.getLogger(Elfo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+                for (int i = 0; i < 5; i++) {
+            try {
+                personaje.morirIzq[i] = new ImageIcon(ImageIO.read(new File(muerIzq.operacion().get(i))));
+            } catch (IOException ex) {
+                Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            try {
+                personaje.atacarIzq[i] = new ImageIcon(ImageIO.read(new File(atqIzq.operacion().get(i))));
+            } catch (IOException ex) {
+                Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
-

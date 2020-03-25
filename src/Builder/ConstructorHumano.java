@@ -7,9 +7,11 @@ package Builder;
 
 
 import AbstractFactory.AtaqueHumano;
+import AbstractFactory.AtaqueIzqHumano;
 import AbstractFactory.DerechaHumano;
 import AbstractFactory.IzquierdaHumano;
 import AbstractFactory.MuerteHumano;
+import AbstractFactory.MuerteIzqHumano;
 import AbstractFactory.SaltoHumano;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +33,8 @@ public class ConstructorHumano extends BuilderPersonaje{
         izquierda=new IzquierdaHumano();
         salto=new SaltoHumano();
         muerte=new MuerteHumano();
+        muerIzq=new MuerteIzqHumano();
+         atqIzq =new AtaqueIzqHumano();
     }
 
     @Override
@@ -70,7 +74,20 @@ public class ConstructorHumano extends BuilderPersonaje{
                 Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        for (int i = 0; i < 7; i++) {
+            try {
+                personaje.morirIzq[i] = new ImageIcon(ImageIO.read(new File(muerIzq.operacion().get(i))));
+            } catch (IOException ex) {
+                Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            try {
+                personaje.atacarIzq[i] = new ImageIcon(ImageIO.read(new File(atqIzq.operacion().get(i))));
+            } catch (IOException ex) {
+                Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
-
 

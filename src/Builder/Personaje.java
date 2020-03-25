@@ -23,6 +23,8 @@ public class Personaje extends JComponent implements Cloneable {
     protected ImageIcon[] saltar;
     protected ImageIcon[] morir;
     protected ImageIcon[] atacar;
+    protected ImageIcon[] morirIzq;
+    protected ImageIcon[] atacarIzq;
     public int desplazamiento;
     public int tempDesplazamiento;
     int x;
@@ -36,16 +38,18 @@ public class Personaje extends JComponent implements Cloneable {
     public int vAnimacion;
     public int ampliar;
     public int player;
+    public int vida;
     Rectangle hitbox;
     static JPanel panel;
     public Thread hilo;
-    public boolean golpear;
+    public boolean tamañop;
 
     // CONSTRUCTOR
     public Personaje() {
-        
+
         velocidad = 240;
         vAnimacion = 24;
+        vida=24;
         ampliar = 0;
         hilo = null;
         derecha = null;
@@ -58,10 +62,26 @@ public class Personaje extends JComponent implements Cloneable {
         ancho = 0;
         alto = 0;
         relacion = 0;
+        tamañop=false;
 
     }
-
-
+    public void perderVida(boolean tamaño){
+        if(tamaño==true){
+            vAnimacion=vAnimacion-2;
+            velocidad=velocidad+60;
+            vida=vida-2;
+        }else{
+            vAnimacion=vAnimacion-1;
+            velocidad=velocidad+30;
+            vida=vida-2;
+        }
+    }
+    public void ganarVida(){
+        vAnimacion=vAnimacion+1;
+        velocidad=velocidad-30;
+    }
+    
+    
     public int isRelacion() {
         return relacion;
     }
@@ -99,7 +119,6 @@ public class Personaje extends JComponent implements Cloneable {
                     while (true) {
                         switch (x) {
                             case 0:
-                                golpear=false;
                                 numero++;
                                 switch (desplazamiento) {
                                     case 1:
@@ -165,7 +184,6 @@ public class Personaje extends JComponent implements Cloneable {
                                 hilo.sleep(velocidad);
                                 break;
                             case 1:
-                                golpear=false;
                                 panel.repaint();
                                 hilo.sleep(velocidad);
                                 if (numero >= saltar - 1) {
@@ -175,7 +193,6 @@ public class Personaje extends JComponent implements Cloneable {
                                 }
                                 break;
                             case 2:
-                                golpear=false;
                                 panel.repaint();
                                 hilo.sleep(velocidad);
                                 if (numero >= morir - 1) {
@@ -189,10 +206,8 @@ public class Personaje extends JComponent implements Cloneable {
                                 panel.repaint();
                                 hilo.sleep(velocidad);
                                 if (numero >= atacar - 1) {
-                                    numero = atacar - 1;
-                                    golpear=false;
+                                    numero = atacar - 1;  
                                 } else {
-                                    golpear=true;
                                     numero++;
                                 }
                                 break;
@@ -297,14 +312,19 @@ public class Personaje extends JComponent implements Cloneable {
 
                     break;
                 case 2:
-
-                    g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
-
+                    if(player==2){
+                        g.drawImage(morirIzq[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
+                    }else{
+                        g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
+                    }
                     break;
                 case 3:
-
-                    g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
-
+                    if(player==2){
+                        g.drawImage(atacarIzq[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
+                    }else{
+                        g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, desplazamientoVertical, ancho+ampliar/2, alto + ampliar, null);
+                    }
+                    
                     break;
                 default:
                     break;

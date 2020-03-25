@@ -20,6 +20,8 @@ public class Elfo extends Personaje {
         super.relacion = 1;
         super.derecha = new ImageIcon[6];
         super.izquierda=new ImageIcon[6];
+        super.atacarIzq=new ImageIcon[5];
+        super.morirIzq=new ImageIcon[5];
         super.saltar = new ImageIcon[6];
         super.morir = new ImageIcon[5];
         super.atacar = new ImageIcon[5];

@@ -6,9 +6,12 @@
 package Builder;
 
 
+
+import AbstractFactory.AtaqueIzqOrco;
 import AbstractFactory.AtaqueOrco;
 import AbstractFactory.DerechaOrco;
 import AbstractFactory.IzquierdaOrco;
+import AbstractFactory.MuerteIzqOrco;
 import AbstractFactory.MuerteOrco;
 import AbstractFactory.SaltoOrco;
 import java.io.File;
@@ -31,6 +34,8 @@ public class ConstructorOrco extends BuilderPersonaje{
         izquierda= new IzquierdaOrco();
         salto= new SaltoOrco();
         muerte= new MuerteOrco();
+        muerIzq=new MuerteIzqOrco();
+        atqIzq =new AtaqueIzqOrco();
     }
 
     @Override
@@ -68,6 +73,20 @@ public class ConstructorOrco extends BuilderPersonaje{
                 personaje.atacar[i] = new ImageIcon(ImageIO.read(new File(ataque.operacion().get(i))));
             } catch (IOException ex) {
                 Logger.getLogger(Orco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            try {
+                personaje.morirIzq[i] = new ImageIcon(ImageIO.read(new File(muerIzq.operacion().get(i))));
+            } catch (IOException ex) {
+                Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            try {
+                personaje.atacarIzq[i] = new ImageIcon(ImageIO.read(new File(atqIzq.operacion().get(i))));
+            } catch (IOException ex) {
+                Logger.getLogger(Humano.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

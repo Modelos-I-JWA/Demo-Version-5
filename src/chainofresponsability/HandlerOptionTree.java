@@ -17,8 +17,7 @@ public class HandlerOptionTree extends Handler{
     public void handlerRequest(int opt, Personaje per) {
         if(opt == 3){
             System.out.println("BAJA VIDA GRANDE");
-            per.setvAnimacion(per.getvAnimacion() - 2);
-             per.velocidad=per.velocidad+70;
+                per.perderVida(true);
              }else{
             successor.handlerRequest(opt,per);
         

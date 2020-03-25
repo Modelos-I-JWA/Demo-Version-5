@@ -17,9 +17,7 @@ public class HandlerOptionTwo extends Handler{
     public void handlerRequest(int opt, Personaje per) {
         System.out.println("entraaaaaaaa");
         if(opt == 2){
-            System.out.println("SUBE VIDAAAA");
-            per.setvAnimacion(per.getvAnimacion() + 1);
-             per.velocidad=per.velocidad-40;
+            per.ganarVida();
              }else{
             successor.handlerRequest(opt,per);
         }
